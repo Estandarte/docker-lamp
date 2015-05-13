@@ -26,6 +26,7 @@ RUN chmod 755 /*.sh
 # config to enable .htaccess
 ADD apache_default /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
+RUN a2enmod expires
 
 # Add volume for Aplication
 VOLUME /var/www
