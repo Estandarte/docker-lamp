@@ -4,7 +4,7 @@ MAINTAINER Leandro Chaves <leandrorchaves@gmail.com>, Fernando Mayo <fernando@tu
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
-  apt-get -y install supervisor git apache2 libapache2-mod-php5 mysql-server php5-mysql pwgen php-apc php5-mcrypt && \
+  apt-get -y install supervisor git apache2 libapache2-mod-php5 mysql-server php5-mysql pwgen php-apc php5-mcrypt nano && \
   echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Add image configuration and scripts
@@ -26,6 +26,7 @@ RUN chmod 755 /*.sh
 # config to enable .htaccess
 ADD apache_default /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
+RUN a2enmod expires
 
 # Add volume for Aplication
 VOLUME /var/www
