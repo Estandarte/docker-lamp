@@ -1,4 +1,4 @@
-tutum-docker-lamp
+estandarte-docker-lamp
 =================
 
 Out-of-the-box LAMP image (PHP+MySQL)
@@ -7,13 +7,13 @@ Out-of-the-box LAMP image (PHP+MySQL)
 Usage
 -----
 
-To create the image `tutum/lamp`, execute the following command on the tutum-docker-lamp folder:
+To create the image `estandarte/lamp`, execute the following command on the estandarte-docker-lamp folder:
 
-	docker build -t tutum/lamp .
+	docker build -t estandarte/lamp .
 
 You can now push your new image to the registry:
 
-	docker push tutum/lamp
+	docker push estandarte/lamp
 
 
 Running your LAMP docker image
@@ -21,7 +21,7 @@ Running your LAMP docker image
 
 Start your image binding the external ports 80 and 3306 in all interfaces to your container:
 
-	docker run -d -p 80:80 -p 3306:3306 tutum/lamp
+	docker run -d -p 80:80 -p 3306:3306 estandarte/lamp
 
 Test your deployment:
 
@@ -36,7 +36,7 @@ Loading your custom PHP application
 In order to replace the "Hello World" application that comes bundled with this docker image,
 create a new `Dockerfile` in an empty folder with the following contents:
 
-	FROM tutum/lamp:latest
+	FROM estandarte/lamp:latest
 	RUN rm -fr /app && git clone https://github.com/username/customapp.git /app
 	EXPOSE 80 3306
 	CMD ["/run.sh"]
@@ -72,7 +72,7 @@ Simply connect from your PHP code with this user:
 Connecting to the bundled MySQL server from outside the container
 -----------------------------------------------------------------
 
-The first time that you run your container, a new user `admin` with all privileges 
+The first time that you run your container, a new user `admin` with all privileges
 will be created in MySQL with a random password. To get the password, check the logs
 of the container by running:
 
@@ -95,7 +95,7 @@ You can then connect to MySQL:
 
 	 mysql -uadmin -p47nnf4FweaKu
 
-Remember that the `root` user does not allow connections from outside the container - 
+Remember that the `root` user does not allow connections from outside the container -
 you should use this `admin` user instead!
 
 
@@ -105,7 +105,7 @@ Setting a specific password for the MySQL server admin account
 If you want to use a preset password instead of a random generated one, you can
 set the environment variable `MYSQL_PASS` to your specific password when running the container:
 
-	docker run -d -p 80:80 -p 3306:3306 -e MYSQL_PASS="mypass" tutum/lamp
+	docker run -d -p 80:80 -p 3306:3306 -e MYSQL_PASS="mypass" estandarte/lamp
 
 You can now test your new admin password:
 
@@ -120,6 +120,3 @@ Disabling .htaccess
 	# config to enable .htaccess
     ADD apache_default /etc/apache2/sites-available/000-default.conf
     RUN a2enmod rewrite
-
-
-**by http://www.tutum.co**

@@ -29,7 +29,8 @@ RUN a2enmod rewrite
 RUN a2enmod expires
 
 # Add volume for Aplication
-VOLUME /var/www
+VOLUME /var/www/html
+WORKDIR /var/www/html
 
 #Enviornment variables to configure php
 ENV PHP_UPLOAD_MAX_FILESIZE 10M
